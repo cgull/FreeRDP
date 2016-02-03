@@ -154,6 +154,11 @@ void xf_keyboard_key_press(xfContext* xfc, BYTE keycode, KeySym keysym)
 	if (keycode < 8)
 		return;
 
+	if (keycode == 37)
+		keycode = 66;
+	else if (keycode == 66)
+		keycode = 37;
+
 	xfc->KeyboardState[keycode] = TRUE;
 
 	if (xf_keyboard_handle_special_keys(xfc, keysym))
@@ -166,6 +171,11 @@ void xf_keyboard_key_release(xfContext* xfc, BYTE keycode)
 {
 	if (keycode < 8)
 		return;
+
+	if (keycode == 37)
+		keycode = 66;
+	else if (keycode == 66)
+		keycode = 37;
 
 	xfc->KeyboardState[keycode] = FALSE;
 
